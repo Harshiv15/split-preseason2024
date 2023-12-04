@@ -1,9 +1,5 @@
 package frc.robot;
 
-import com.swervedrivespecialties.swervelib.Mk3SwerveModuleHelper;
-import com.swervedrivespecialties.swervelib.Mk4SwerveModuleHelper;
-import com.swervedrivespecialties.swervelib.ModuleConfiguration;
-import com.swervedrivespecialties.swervelib.SdsModuleConfigurations;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import frc.robot.core.Swerve.SwerveModuleConstants;
@@ -18,6 +14,7 @@ public class RobotMap {
 
   public static class DriveMap {
     public static final int PIGEON_ID = 9;
+
     /* Module Specific Constants */
     /* Front Left Module - Module 0 */
     public static final class FrontLeft {
@@ -25,8 +22,8 @@ public class RobotMap {
       public static final int ROTATOR_ID = 8;
       public static final int ENCODER_ID = 10;
       public static final Rotation2d OFFSET = Rotation2d.fromDegrees(250.75);
-      public static final SwerveModuleConstants CONSTANTS = new SwerveModuleConstants(DRIVE_ID, ROTATOR_ID, ENCODER_ID,
-          OFFSET);
+      public static final SwerveModuleConstants CONSTANTS =
+          new SwerveModuleConstants(DRIVE_ID, ROTATOR_ID, ENCODER_ID, OFFSET);
     }
 
     /* Front Right Module - Module 1 */
@@ -35,8 +32,8 @@ public class RobotMap {
       public static final int ROTATOR_ID = 2;
       public static final int ENCODER_ID = 11;
       public static final Rotation2d OFFSET = Rotation2d.fromDegrees(314.73);
-      public static final SwerveModuleConstants CONSTANTS = new SwerveModuleConstants(DRIVE_ID, ROTATOR_ID, ENCODER_ID,
-          OFFSET);
+      public static final SwerveModuleConstants CONSTANTS =
+          new SwerveModuleConstants(DRIVE_ID, ROTATOR_ID, ENCODER_ID, OFFSET);
     }
 
     /* Back Left Module - Module 2 */
@@ -45,8 +42,8 @@ public class RobotMap {
       public static final int ROTATOR_ID = 6;
       public static final int ENCODER_ID = 13;
       public static final Rotation2d OFFSET = Rotation2d.fromDegrees(95.63);
-      public static final SwerveModuleConstants CONSTANTS = new SwerveModuleConstants(DRIVE_ID, ROTATOR_ID, ENCODER_ID,
-          OFFSET);
+      public static final SwerveModuleConstants CONSTANTS =
+          new SwerveModuleConstants(DRIVE_ID, ROTATOR_ID, ENCODER_ID, OFFSET);
     }
 
     /* Back Right Module - Module 3 */
@@ -55,11 +52,9 @@ public class RobotMap {
       public static final int ROTATOR_ID = 4;
       public static final int ENCODER_ID = 12;
       public static final Rotation2d OFFSET = Rotation2d.fromDegrees(335.74);
-      public static final SwerveModuleConstants CONSTANTS = new SwerveModuleConstants(DRIVE_ID, ROTATOR_ID, ENCODER_ID,
-          OFFSET);
+      public static final SwerveModuleConstants CONSTANTS =
+          new SwerveModuleConstants(DRIVE_ID, ROTATOR_ID, ENCODER_ID, OFFSET);
     }
-
-    
   }
 
   public static class TankDriveMap {
