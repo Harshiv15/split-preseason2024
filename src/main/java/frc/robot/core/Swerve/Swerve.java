@@ -16,21 +16,17 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import java.util.function.Supplier;
 
 public abstract class Swerve extends SubsystemBase {
-  private static Swerve instance;
-
-  public abstract Swerve getInstance();
-
   private SwerveDriveOdometry odometry;
   private SwerveModule[] modules;
   private WPI_Pigeon2 gyro;
 
-  private Swerve(
-      int pigeon,
+  public Swerve(
+      int pigeon_id,
       SwerveModuleConstants fl,
       SwerveModuleConstants fr,
       SwerveModuleConstants bl,
       SwerveModuleConstants br) {
-    gyro = new WPI_Pigeon2(pigeon);
+    gyro = new WPI_Pigeon2(pigeon_id);
     gyro.configFactoryDefault();
     zeroGyro();
 
