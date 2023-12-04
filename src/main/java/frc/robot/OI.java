@@ -2,8 +2,10 @@ package frc.robot;
 
 import frc.robot.core.util.controllers.GameController;
 import frc.robot.core.util.controllers.Logitech;
+import frc.robot.core.util.controllers.Xbox;
 import frc.robot.core.util.controllers.Logitech.Version;
 import frc.robot.layout.TwoJoyStickDriverMap;
+import frc.robot.layout.TwoJoyStickOperatorMap;
 
 public class OI {
   private static OI instance;
@@ -29,15 +31,18 @@ public class OI {
 
   public void registerCommands() {
     new TwoJoyStickDriverMap(driver).registerCommands();
-    // operator.registerCommands();
+    new TwoJoyStickOperatorMap(operator).registerCommands();
   }
 
   private OI() {
     // driver = new GameController(RobotMap.ControllerMap.DRIVER_JOYSTICK, new Logitech());
     driver =
-        new GameController(
-            RobotMap.ControllerMap.DRIVER_JOYSTICK,
-            new Logitech(Version.REVERSED_TRIGGER_AND_STICK));
-    // operator = new GameController(RobotMap.ControllerMap.OPERATOR_JOYSTICK, new Logitech());
+      new GameController(
+          RobotMap.ControllerMap.DRIVER_JOYSTICK,
+          ExampleConfig.Controllers.getDriverController());
+    operator = 
+      new GameController(
+          RobotMap.ControllerMap.OPERATOR_JOYSTICK,
+          ExampleConfig.Controllers.getOperatorController());
   }
 }
