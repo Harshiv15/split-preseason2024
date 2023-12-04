@@ -25,7 +25,6 @@ public class Robot extends TimedRobot {
     ctreConfigs = new CTREConfigs();
     OI.getInstance();
     var autoModeSelector = AutoModeSelector.getInstance();
-
   }
 
   /**
