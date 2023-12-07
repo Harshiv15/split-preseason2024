@@ -1,4 +1,4 @@
-package frc.robot.core.Swerve;
+package frc.robot.core.swerve;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.math.geometry.Translation2d;

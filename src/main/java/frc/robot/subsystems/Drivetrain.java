@@ -2,39 +2,30 @@ package frc.robot.subsystems;
 
 import com.pathplanner.lib.commands.FollowPathCommand;
 import com.pathplanner.lib.commands.FollowPathWithEvents;
-import com.pathplanner.lib.commands.PathfindThenFollowPathHolonomic;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
-import com.pathplanner.lib.controllers.PPLTVController;
 import com.pathplanner.lib.controllers.PathFollowingController;
 import com.pathplanner.lib.path.PathPlannerPath;
-import com.pathplanner.lib.path.PathPlannerTrajectory;
 import com.pathplanner.lib.util.PIDConstants;
-import com.pathplanner.lib.util.PathPlannerLogging;
 import com.pathplanner.lib.util.ReplanningConfig;
 import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
-import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
-import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.*;
 import frc.robot.RobotMap.DriveMap;
-import frc.robot.core.Swerve.Swerve;
-import frc.robot.core.Swerve.SwerveConstants;
+import frc.robot.core.swerve.Swerve;
+import frc.robot.core.swerve.SwerveConstants;
 
-import javax.management.ConstructorParameters;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import static com.pathplanner.lib.path.PathPlannerPath.fromPathFile;
 import static edu.wpi.first.math.kinematics.ChassisSpeeds.fromFieldRelativeSpeeds;
-import static frc.robot.core.Swerve.SwerveConstants.*;
+import static frc.robot.core.swerve.SwerveConstants.*;
 
-/**
+ /**
  * <b>Use {@link #getInstance()} to access all subsystems.</b><br><br>
  * This is the Drive subsystem for the 2024 season. Throughout the season, add everything driving here.
- * <br><br><i>Think:</i>
+ * <br><br>Think:
  * <ul><li>path following (including OTF and replanning),
  * <li>slew-rate limiting,
  * <li>AprilTag relocalization and alignment,
