@@ -39,8 +39,8 @@ public class Drivetrain extends Swerve {
     private static Drivetrain instance;
 
     /**
-     * <b>Use this to access the subsystem using its static instance.</b><br> Tweak all constructor values
-     * in {@link SwerveConstants}.
+     * <b>Use this to access the subsystem using its static instance.</b><br> Tweak constructor values
+     * (port configs) in {@link frc.robot.RobotMap.DriveMap}
      * @return the singleton of this class. Use this to reference the drivetrain between classes
      * and Commands.
      */
@@ -64,18 +64,6 @@ public class Drivetrain extends Swerve {
     }
 
     /**
-     * This method is called once per cycle – or "period", hence its name. On the RoboRIO, this means code
-     * inside is run once every ~10ms, or one hundredths of a second. Put everything that should be running
-     * throughout the entirety of the match in this method.
-     * <br><br>
-     * <i>Usually,</i> the drivetrain needs to do nothing more than repeatedly update odometry.
-     */
-    @Override
-    public void periodic() {
-        super.periodic();
-    }
-
-    /**
      * TODO tune PID gains for x, y, and rot under {@link SwerveConstants}
      * <br><br>
      * A method to travel to a given position on the field.
@@ -84,22 +72,22 @@ public class Drivetrain extends Swerve {
      * the controllers' thresholds have been reached.
      */
     public Command goToPoint(Pose2d targetPose) {
-        PIDController xController = new PIDController(0.0, 0.0, 0.0);
-        PIDController yController = new PIDController(0.0, 0.0, 0.0);
-        PIDController rController = new PIDController(0.0, 0.0, 0.0);
+        PIDController xController = new PIDController(X_KP, X_KI, X_KD);
+        PIDController yController = new PIDController(Y_KP, Y_KI, Y_KD);
+        PIDController thetaController = new PIDController(THETA_KP, THETA_KI, THETA_KD);
 
         return new FunctionalCommand(
                 () -> System.out.println(String.format("Traveling to x:%s, y:%s, z:%s", targetPose.getX(), targetPose.getY(), targetPose.getRotation().getDegrees())),
                 () -> {
                     double sX = xController.calculate(getPose().getX(), targetPose.getX());
                     double sY = yController.calculate(getPose().getY(), targetPose.getY());
-                    double sR = rController.calculate(getPose().getRotation().getRadians(), targetPose.getRotation().getRadians());
+                    double sR = thetaController.calculate(getPose().getRotation().getRadians(), targetPose.getRotation().getRadians());
 
                     drive(ChassisSpeeds.fromFieldRelativeSpeeds(sX, sY, sR, getPose().getRotation()), true);
                 },
-                interrupted -> { xController.close(); yController.close(); rController.close(); },
-                () -> /*getPose().getTranslation().getDistance(targetPose.getTranslation()) < 0.1*/
-                        xController.atSetpoint() && yController.atSetpoint() && rController.atSetpoint(),
+                interrupted -> { xController.close(); yController.close(); thetaController.close(); },
+                () -> xController.atSetpoint() && yController.atSetpoint() && thetaController.atSetpoint(),
+                    /* or getPose().getTranslation().getDistance(targetPose.getTranslation()) < 0.1 ?*/
                 this
             );
     }
@@ -135,4 +123,16 @@ public class Drivetrain extends Swerve {
           PathPlannerPath path = fromPathFile(pathFile);
           return new FollowPathWithEvents(followTrajectoryCommand(()->path, isFirstPath), path, this::getPose);
     }
+
+     /**
+      * This method is called once per cycle – or "period", hence its name. On the RoboRIO, this means code
+      * inside is run once every ~10ms, or one hundredths of a second. Put everything that should be running
+      * throughout the entirety of the match in this method.
+      * <br><br>
+      * <i>Usually,</i> the drivetrain needs to do nothing more than repeatedly update odometry.
+      */
+     @Override
+     public void periodic() {
+         super.periodic();
+     }
 }
