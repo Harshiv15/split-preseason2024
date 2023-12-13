@@ -142,6 +142,7 @@ public class Drivetrain extends Swerve {
    */
   public Command followTrajectoryCommand(String pathFile, boolean isFirstPath) {
     PathPlannerPath path = fromPathFile(pathFile);
+    if(path != null) System.out.println("test");
     try {return new FollowPathWithEvents(
         followTrajectoryCommand(() -> path, isFirstPath), path, this::getPose);
     }
