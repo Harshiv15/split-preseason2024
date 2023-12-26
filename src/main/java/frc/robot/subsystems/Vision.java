@@ -34,7 +34,7 @@ public class Vision extends SubsystemBase {
         return hasTarget;
     }
 
-    public double getHorizontal() {
+    public double getHorizontalAngle() {
         return currentX;
     }
 

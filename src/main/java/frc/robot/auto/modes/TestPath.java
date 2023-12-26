@@ -11,7 +11,7 @@ import frc.robot.subsystems.Drivetrain;
 
 public class TestPath extends SequentialCommandGroup {
     public TestPath() {
-        String path = "TestPath";
+        String path = "Test Path";
 
         var swerve = Drivetrain.getInstance();
         addCommands(swerve.followTrajectoryCommand(path, true));
