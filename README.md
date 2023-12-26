@@ -1,3 +1,3 @@
-# 1884-sidestream
+# 1884-template
 
-Racin to the moonlight and I'm speedin
+Don't ever say it's over if I'm breathin

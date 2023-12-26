@@ -38,6 +38,6 @@ public class TwoJoyStickDriverMap extends DriverMap {
     @Override
     public void registerCommands() {
         super.registerCommands();
-        //getTestButton().onTrue(drivetrain.followTrajectoryCommand("Test Path", true));
+        getTestButton().onTrue(drivetrain.followTrajectoryCommand("Test Path", true));
     }
 }
